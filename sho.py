@@ -7,7 +7,7 @@ import sys
 SHODAN_API_KEY = ''
 api = shodan.Shodan(SHODAN_API_KEY)
 
-class diagram:
+claclass diagram:
     def __init__(self, *argv):
         for arg in argv:
             self.IP = argv
@@ -42,6 +42,17 @@ class diagram:
         console = Console()
         console.print(table)
 
-IP1 = diagram(input("Enter the IP address you want to scan: "))
+class startProgram:
+    console = Console()
+    while True:
+        try:
+            IP1 = diagram(console.input("[bold blue] Enter an IP address: "))
+            IP1.shodan_search()
+            IP1.output_format()
+        except KeyboardInterrupt:
+            console.print("\n[bold red] Exting program...")
+            break
+
+IP2 = startProgram()
 IP1.shodan_search()
 IP1.output_format()
