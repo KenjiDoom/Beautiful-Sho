@@ -15,18 +15,12 @@ class diagram:
 
     def shodan_search(self):
         host = api.host(self.IP)
+        self.ip, self.city, self.port = [],[],[]
         for items in host['data']:
-
-            ip_addr = str(items['ip_str'])
-            self.ip = ip_addr
-
-            city = host.get('city', 'n/a')
-            self.city = city
-
-            open_port = str(items['port'])
-            self.port = open_port
-
-        print(self.ip, self.city, self.port)
+            self.ip.append(items['ip_str'])
+            self.city.append(host.get('city', 'n/a'))
+            self.port.append(items['port'])
+        #print(len(self.ip), len(self.city), len(self.port)) # Verifying list match 
 
     def output_format(self):
         table = Table(title="Shodan results")
@@ -36,11 +30,13 @@ class diagram:
         table.add_column("City", justify="right", style="red")
         table.add_column("Port", style="green")
 
+        for index, (a, b, c ) in enumerate(zip(self.ip, self.city, self.port)):
+            table.add_row(str(a), str(b), str(c))
+
         console = Console()
         console.print(table)
 
 
-
 IP1 = diagram(input("Enter the IP address you want to scan: "))
 IP1.shodan_search()
-
+IP1.output_format()
