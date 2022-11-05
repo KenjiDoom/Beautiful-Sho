@@ -47,12 +47,11 @@ class startProgram:
     while True:
         try:
             IP1 = diagram(console.input("[bold blue] Enter an IP address: "))
-            IP1.shodan_search()
+            with console.status("[bold red] Fetching data...") as status:
+                console.log(IP1.shodan_search())
             IP1.output_format()
         except KeyboardInterrupt:
             console.print("\n[bold red] Exting program...")
             break
 
 IP2 = startProgram()
-IP1.shodan_search()
-IP1.output_format()
