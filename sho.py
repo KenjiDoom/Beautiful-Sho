@@ -7,7 +7,7 @@ import sys
 SHODAN_API_KEY = ''
 api = shodan.Shodan(SHODAN_API_KEY)
 
-claclass diagram:
+class diagram:
     def __init__(self, *argv):
         for arg in argv:
             self.IP = argv
