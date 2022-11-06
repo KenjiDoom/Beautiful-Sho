@@ -44,14 +44,18 @@ class diagram:
 
 class startProgram:
     console = Console()
-    while True:
-        try:
-            IP1 = diagram(console.input("[bold blue] Enter an IP address: "))
-            with console.status("[bold red] Fetching data...") as status:
-                console.log(IP1.shodan_search())
-            IP1.output_format()
-        except KeyboardInterrupt:
-            console.print("\n[bold red] Exting program...")
-            break
-
+    if len(SHODAN_API_KEY) > 1:
+        while True:
+            try:
+                IP1 = diagram(console.input("[bold blue] Enter an IP address: "))
+                with console.status("[bold red] Fetching data...") as status:
+                    console.log(IP1.shodan_search())
+                IP1.output_format()
+            except KeyboardInterrupt:
+                console.print("\n[bold red] Exting program...")
+                break
+    else:
+        console.print("[bold red] Please enter API Key")
+        
 IP2 = startProgram()
+
