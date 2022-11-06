@@ -41,7 +41,6 @@ class diagram:
 
         console = Console()
         console.print(table)
-
 class startProgram:
     console = Console()
     if len(SHODAN_API_KEY) > 1:
@@ -54,8 +53,13 @@ class startProgram:
             except KeyboardInterrupt:
                 console.print("\n[bold red] Exting program...")
                 break
-    else:
-        console.print("[bold red] Please enter API Key")
-        
+    elif len(SHODAN_API_KEY) < 1:
+        API_OP = console.input("[bold red] Warning: API key is missing, would you like to enter API key Y/N?: ")
+        if API_OP.upper() == "Y":
+            console.print("[bold blue]Enter API key: ")
+        else:
+            console.input("[bold red]Exiting...")
+            exit()
+
 IP2 = startProgram()
 
